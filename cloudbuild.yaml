@@ -9,5 +9,5 @@ steps:
     entrypoint: mvn
     args: [ "package", "-Dmaven.test.skip=true" ]
   - name: gcr.io/cloud-builders/docker
-    args: ['build', '-t', 'gcr.io/family-video-diary/my-maven-docker-project', '--build-arg=JAR_FILE=target/build-artifact', '.']
-    images: ['gcr.io/family-video-diary/my-maven-docker-project']
+    args: ['build', '-t', 'europe-docker.pkg.dev/family-video-diary/mavendockercontainer', '--build-arg=JAR_FILE=target/my-maven-docker-project', '.']
+    images: ['europe-docker.pkg.dev/family-video-diary/mavendockercontainer']
