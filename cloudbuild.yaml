@@ -1,13 +1,14 @@
 steps:
-  - name: maven:3-jdk-8
+  - name: Check Maven Version
     entrypoint: mvn
     args: ['--version']
-  - name: maven:3-jdk-8
+  - name: Test
     entrypoint: mvn
     args: [ 'test' ]
-  - name: maven:3-jdk-8
+  - name: Package
     entrypoint: mvn
     args: [ "package", "-Dmaven.test.skip=true" ]
-  - name: gcr.io/cloud-builders/docker
-    args: ['build', '-t', 'europe-docker.pkg.dev/family-video-diary/mavendockercontainer', '--build-arg=JAR_FILE=target/my-maven-docker-project', '.']
-images: ['europe-docker.pkg.dev/family-video-diary/mavendockercontainer']
+  - name: Docker Build
+    run: gcloud auth configure-docker europe-docker.pkg.de
+    args: ['build', '-t', 'gcr.io/family-video-diary/mavendockercontainer', '--build-arg=JAR_FILE=target/my-maven-docker-project', '.']
+images: ['gcr.io/family-video-diary/mavendockercontainer']
