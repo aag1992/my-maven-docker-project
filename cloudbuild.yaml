@@ -9,6 +9,5 @@ steps:
     entrypoint: mvn
     args: [ "package", "-Dmaven.test.skip=true" ]
   - name: Docker Build
-    run: gcloud auth configure-docker europe-docker.pkg.de
     args: ['build', '-t', 'gcr.io/family-video-diary/mavendockercontainer', '--build-arg=JAR_FILE=target/my-maven-docker-project', '.']
 images: ['gcr.io/family-video-diary/mavendockercontainer']
